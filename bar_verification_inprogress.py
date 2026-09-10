@@ -1,3 +1,11 @@
+# --- в помощь ---
+# texts[lang][""]
+# .isalpha()
+# .isdigit():
+# .append
+# .remove
+
+# --- в помощь ---
 # --- переменные ---
 name = None
 age = None
@@ -45,7 +53,8 @@ try:
     }
 except ValueError:
     print("folder")
-# texts[lang][""]
+
+
 
 
 act = input("""chooze ur lang. Выберите язык. 
