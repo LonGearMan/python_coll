@@ -35,8 +35,8 @@ try:
             "error1": "folder"
         },
         "en": {
-            "ask_age": "Hewuu enter ur age to enter the club u have {max - attemps} attempts left: ",
-            "letters": "u entered letters traiii again u have {max - attemps} attempts left",
+            "ask_age": f"Hewuu enter ur age to enter the club u have {max - attemps} attempts left: ",
+            "letters": f"u entered letters traiii again u have {max - attemps} attempts left",
             "too_many": "too many attemps byee bihh",
             "mixed": "u entered letters and nums try again",
             "too_old": "nice try brotha enter ur real age",
@@ -56,34 +56,26 @@ except ValueError:
 
 
 
-
-act = input("""chooze ur lang. Выберите язык. 
+while True:
+    act = input("""chooze ur lang. Выберите язык. 
 1 - russian
 2 english
 """)
-try:
     if act == "1":
         print("ru enable")
         lang = "ru"
-
+        break
     elif act == "2":
         print("en enable")
         lang = "en"
+        break
     else:
-        print("error error error error ONLY '1' or '2'")
-except ValueError:
-    print("folder")
+        print("Вы ввели неправильную команду введите только '1' или '2'")
+
 
 while True:
-    # if (text = input(texts[lang]["ask_age"])) == ValueError:
-    #     print ("ошибка")
 
     text = input(texts[lang]["ask_age"])
-
-    # try:
-    #     text = input(texts[lang]["ask_age"])
-    # except ValueError:
-        # print("Вы написали НЕ 1 или 2"
 
     
     bukva = False
@@ -103,7 +95,7 @@ while True:
         continue
     if bukva:
             attemps += 1
-            print(f"вы ввели буквы попробуйте еще раз")
+            print(texts[lang]["letters"])
             if attemps >= max:
                 print(texts[lang]["too_many"])
                 break
@@ -118,8 +110,8 @@ while True:
                 print(texts[lang]["too_many"])
                 break
         elif age >= 18:
-            print("Добро пожаловать!")
-            name = input("Теперь напишите ваше имя ")
+            print(texts[lang]["welcome"])
+            name = input(texts[lang]["ask_name"])
 
             bukva2 = False
             cifra2 = False
@@ -130,43 +122,35 @@ while True:
                     cifra2 = True
             if cifra2:
                 attemps += 1
-                print(f"В вашем имени не может быть цифр только если вы не робот! ")
+                print(texts[lang]["digits"])
                 if attemps >= max:
                     print(texts[lang]["too_many"])
                     break
                 continue
             if bukva2:
-                print (f"Ну наконец то здрасте о великий {name} вы прошли в наш клуб в возрасте {age}")
+                print (texts[lang]["success"])
                 names.append(name)
                 ages.append(age)
                 break
         elif age < 0:
-            print(f"Возраст не может быть отрицательным попробуйте ещё раз у вас осталось {attemps} попыток ")
+            print(texts[lang]["neg"])
             attemps += 1
             if attemps >= max:
                      print(texts[lang]["too_many"])
                      break
-        elif age < 0:
-            attemps += 1
-            print(f"Возраст не может быть отрицательным попробуйте ещё раз")
-            if attemps >= max:
-                print(texts[lang]["too_many"])
-                break
         else:
             attemps += 1
             if attemps >= max:
                 print(texts[lang]["too_many"])
                 break
-            good = input(f"""Вы не проходите по параметрам возраста или пропробуйте ввести число больше 18.
-                Если вы честный то напишите ноль и программа завершиться или напишите Enter чтобы еще раз ввести ваш "реальный" возраст 
-                """)
+            good = input(texts[lang]["truth"])
             if good == "0":
                     print ("до свидания!")
                     break
 
     except ValueError:
         attemps += 1
-        print(f"Вы ввели не число! Попробуйте ещё раз")
+        print(texts[lang]["not_a_number"])
         if attemps >= max:
             print(texts[lang]["too_many"])
             break
